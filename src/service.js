@@ -1,6 +1,7 @@
 // services/apiService.js
 
-const API_URL = 'http://localhost:3000/wpp';
+// const API_URL = 'http://localhost:3000/wpp';
+const API_URL = 'http://13.49.74.201:3000/wpp';
 
 export const sendMessage = async (phoneNumber, message) => {
     try {
