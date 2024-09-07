@@ -73,7 +73,7 @@ const App = () => {
             setOpen(true);
         } catch (error) {
             console.error('Error:', error);
-
+            alert(JSON.stringify(error))
             setErrorMessage('Insira um numero de telefone com whatsapp');
 
             setErrorOpen(true);
