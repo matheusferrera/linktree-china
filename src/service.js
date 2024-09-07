@@ -12,7 +12,7 @@ export const sendMessage = async (phoneNumber, message) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                remoteId: `${phoneNumber.replace(/\D/g, '')}@c.us`,
+                remoteId: `55${phoneNumber.replace(/\D/g, '')}@c.us`,
                 message,
             }),
         });

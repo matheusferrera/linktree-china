@@ -17,9 +17,7 @@ const StyledForm = styled('form')`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-const PhoneNumberInput = ({ control, error }) => {
-
-    console.log("ERRO INPUT -> ", error)
+const PhoneNumberInput = ({ control, error, onPhoneNumberChange }) => {
     return (
         <Controller
             name="phoneNumber"
@@ -29,7 +27,10 @@ const PhoneNumberInput = ({ control, error }) => {
                 <InputMask
                     mask="(99) 99999-9999"
                     value={field.value}
-                    onChange={field.onChange}
+                    onChange={(e) => {
+                        field.onChange(e); // Atualiza o valor no react-hook-form
+                        onPhoneNumberChange(e.target.value); // Atualiza o estado local
+                    }}
                 >
                     {() => (
                         <TextField
@@ -54,6 +55,7 @@ const App = () => {
     const [errorOpen, setErrorOpen] = useState(false);
     const [phoneNumberError, setPhoneNumberError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
 
     const onSubmit = async () => {
         const phoneNumber = getValues("phoneNumber");
@@ -92,7 +94,8 @@ const App = () => {
                 <div className="text" style={{ padding: "0px" }}>
                     <h4 style={{ fontWeight: "400", color: "black" }}>Quer fazer parte do grupo fitness de apoio que mais cresce do Brasil <b>TOTALMENTE DE GRAÇA</b>?</h4>
                 </div>
-                <PhoneNumberInput control={control} error={phoneNumberError} />
+                <p style={{ color: "black" }}>Telefone - {phoneNumber}</p>
+                <PhoneNumberInput control={control} error={phoneNumberError} onPhoneNumberChange={setPhoneNumber} />
                 <Button type="submit" variant="contained" style={{ fontWeight: "bold", borderRadius: "9999px" }} sx={{ marginTop: 2 }}>
                     Quero me manter atualizado
                 </Button>
