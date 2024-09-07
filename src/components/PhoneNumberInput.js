@@ -56,6 +56,7 @@ const App = () => {
     const [phoneNumberError, setPhoneNumberError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [logError, setLogError] = useState('');
 
     const onSubmit = async () => {
         const phoneNumber = getValues("phoneNumber");
@@ -73,6 +74,7 @@ const App = () => {
             setOpen(true);
         } catch (error) {
             console.error('Error:', error);
+            setLogError(JSON.stringify(error))
             alert(JSON.stringify(error))
             setErrorMessage('Insira um numero de telefone com whatsapp');
 
@@ -94,7 +96,7 @@ const App = () => {
                 <div className="text" style={{ padding: "0px" }}>
                     <h4 style={{ fontWeight: "400", color: "black" }}>Quer fazer parte do grupo fitness de apoio que mais cresce do Brasil <b>TOTALMENTE DE GRAÇA</b>?</h4>
                 </div>
-                <p style={{ color: "black" }}>Telefone - {phoneNumber}</p>
+                <p style={{ color: "black" }}>logerror - {logError}</p>
                 <PhoneNumberInput control={control} error={phoneNumberError} onPhoneNumberChange={setPhoneNumber} />
                 <Button type="submit" variant="contained" style={{ fontWeight: "bold", borderRadius: "9999px" }} sx={{ marginTop: 2 }}>
                     Quero me manter atualizado
