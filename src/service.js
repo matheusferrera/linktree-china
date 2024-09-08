@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 // const API_URL = 'http://localhost:3000/wpp';
-const API_URL = 'https://13.49.74.201:3000/wpp';
+const API_URL = 'https://api-china.work.gd/wpp';
 
 export const sendMessage = async (phoneNumber, message) => {
     const data = {
